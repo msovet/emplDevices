@@ -8,34 +8,39 @@
     <%@page pageEncoding="UTF-8" %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Create</title>
+    <title>Update</title>
 </head>
 <body>
 
-<form:form modelAttribute="employee" action="/employees/create" method="post">
+<form:form modelAttribute="employee" action="/employees/${employee.id}/update" method="post">
+    <label for="firstName">Username</label>
+
     <input name="firstName"
+           id="firstName"
            class="form-control <form:errors path="firstName">is-invalid</form:errors>"
-           placeholder="Username"
-           type="text">
+           type="text"
+           value="<c:if test="${not empty employee}">${employee.firstName}</c:if>">
     <form:errors path="firstName"/>
     <br><br>
+    <label for="lastName">Surname</label>
     <input name="lastName"
+           id="lastName"
            class="form-control <form:errors path="lastName">is-invalid</form:errors>"
-           placeholder="lastName"
-           type="text">
+           type="text"
+           value="<c:if test="${not empty employee}">${employee.lastName}</c:if>">
     <form:errors path="lastName"/>
     <br><br>
+    <label for="email">Email</label>
     <input name="email"
+           id="email"
            class="form-control <form:errors path="email">is-invalid</form:errors>"
            placeholder="email"
-           type="text">
+           type="text"
+           value="<c:if test="${not empty employee}">${employee.email}</c:if>">
     <form:errors path="email"/>
     <br><br>
-    Gender: <input type="radio" name="gender" value="male" checked="checked"/> <p>Male</p>|
-    <input type="radio" name="gender" value="female"/> <p>Female</p>
-    <br><br>
     <%--    <input type="submit" value="Submit"/>--%>
-    <button type="submit" value="Submit" class="btn btn-primary btn-block">Создать</button>
+    <button type="submit" value="Submit" class="btn btn-primary btn-block">Обновить</button>
 
     <h4> ${message} </h4>
 </form:form>

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Table(name = "EMPLOYEE")
 @Entity
@@ -35,5 +36,8 @@ public class Employee {
 
     @Column(name = "GENDER")
     private String gender;
+
+    @OneToMany(mappedBy = "employee")
+    private Set<Device> devices;
 
 }

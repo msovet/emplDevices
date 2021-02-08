@@ -6,16 +6,13 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Employees</title>
+    <title>Employee Read</title>
 </head>
 <body>
 
-<c:if test="${not empty employees}">
-    <c:forEach var="employee" items="${employees}">
-        <a href="/employees/${employee.id}"> Show | </a> <a href="/employees/${employee.id}/update"> Update </a>| ${employee.id} | ${employee.firstName} | ${employee.lastName} | ${employee.email} | ${employee.gender}
-        <br>
-        <br>
-    </c:forEach>
+<c:if test="${not empty employee}">
+    <h3>ONE EMPLOYEE</h3>
+    <h4>| ${employee.id} | ${employee.firstName} | ${employee.lastName} | ${employee.email} | ${employee.gender}</h4>
 </c:if>
 
 <%--<a href="${pageContext.request.contextPath}/personList">Person List</a>--%>
