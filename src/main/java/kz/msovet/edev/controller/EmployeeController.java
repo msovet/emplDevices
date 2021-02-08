@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -52,7 +53,7 @@ public class EmployeeController {
             return "create";
         } else {
             employeeRepo.save(employee);
-            model.addAttribute("message" , "Entity created successfully");
+            model.addAttribute("message", "Entity created successfully");
 
             return "create";
         }
@@ -68,7 +69,7 @@ public class EmployeeController {
         return "read";
     }
 
-    @RequestMapping(value="/{id}/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public ModelAndView updateEmployee(@PathVariable Long id) {
         Employee employee = employeeService.getEmployee(id);
         ModelAndView map = new ModelAndView("update");
@@ -78,19 +79,25 @@ public class EmployeeController {
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     public String updateEmployee(@ModelAttribute("employee") @Valid Employee employee,
-                              @PathVariable("id") Long id,
-                              ModelMap model,
-                              BindingResult bindingResult) {
+                                 @PathVariable("id") Long id,
+                                 ModelMap model,
+                                 BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("employee", employee);
             return "update";
         } else {
-            employee.setGender(employeeRepo.getById(id).getGender());
-
-            employeeRepo.save(employee);
+            employeeService.update(employee);
             model.addAttribute("message", "Entity updated successfully");
 
             return "update";
         }
+    }
+
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public RedirectView deleteEmployee(@PathVariable("id") Long id) {
+        Employee employee = employeeRepo.getById(id);
+        employeeRepo.delete(employee);
+
+        return new RedirectView("/employees");
     }
 }

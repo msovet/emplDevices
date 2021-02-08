@@ -14,8 +14,10 @@ public class EmployeeService {
         return employeeRepo.getById(id);
     }
     public void update(Employee employee) {
-
+        employee.setGender(employeeRepo.getById(employee.getId()).getGender());
         employeeRepo.save(employee);
         System.out.println("EmployeeService.updateEmployee() invoked " + employee);
     }
+//    public void delete(){
+//    }
 }
