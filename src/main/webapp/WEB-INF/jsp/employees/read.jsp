@@ -15,6 +15,15 @@
     <h4>| ${employee.id} | ${employee.firstName} | ${employee.lastName} | ${employee.email} | ${employee.gender}</h4>
 </c:if>
 
+
+<c:if test="${not empty devices}">
+    <c:forEach var="device" items="${devices}">
+        <a href="/devices/${device.id}"> ${device.category} | ${device.name} | ${device.price} | ${device.date}
+<%--        <a href="/employees/${employee.id}/delete"> | Delete | </a>--%>
+<%--        <a href="/employees/create">| Create | </a>--%>
+    </c:forEach>
+</c:if>
+            <br><br>
 <a href="/employees">All Employees List</a>
 <a href="/employees/${employee.id}/device">Add device</a>
 

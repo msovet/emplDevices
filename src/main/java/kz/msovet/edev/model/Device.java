@@ -35,8 +35,9 @@ public class Device {
     @NotNull
     private Long price;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "EMPLOYEE_ID", foreignKey = @ForeignKey(name = "EMPLOYEE_DEVICE_FK"))
+    @ManyToOne(fetch = FetchType.EAGER)
+    @NotNull
     private Employee employee;
 
 }

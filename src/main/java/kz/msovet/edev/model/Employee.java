@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Table(name = "EMPLOYEE")
@@ -37,7 +39,7 @@ public class Employee {
     @Column(name = "GENDER")
     private String gender;
 
-    @OneToMany(mappedBy = "employee")
-    private Set<Device> devices;
-
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "EMPLOYEE_ID", updatable = false)
+    private List<Device> devices = new ArrayList<Device>();
 }

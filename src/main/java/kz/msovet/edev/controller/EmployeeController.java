@@ -1,5 +1,6 @@
 package kz.msovet.edev.controller;
 
+import kz.msovet.edev.model.Device;
 import kz.msovet.edev.model.Employee;
 import kz.msovet.edev.repo.EmployeeRepo;
 import kz.msovet.edev.services.EmployeeService;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/employees")
@@ -34,7 +36,6 @@ public class EmployeeController {
     public String getAllEmployees(Model model) {
         List<Employee> employees = employeeRepo.findAll();
         model.addAttribute("employees", employees);
-
         return "employees/index";
     }
 
@@ -63,8 +64,10 @@ public class EmployeeController {
     public String getEmployee(@PathVariable("id") Long employeeId,
                               Model model) {
         Employee employee = employeeService.getEmployee(employeeId);
+        List<Device> devices = employee.getDevices();
 
         model.addAttribute("employee", employee);
+        model.addAttribute("devices", devices);
 
         return "employees/read";
     }
