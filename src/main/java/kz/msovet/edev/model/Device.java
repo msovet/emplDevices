@@ -3,9 +3,11 @@ package kz.msovet.edev.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Table(name = "DEVICE")
@@ -18,16 +20,19 @@ public class Device {
     @GeneratedValue(generator = "device_seq", strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "CATEGORY")
+    @NotEmpty
+    private String category;
+
     @Column(name = "NAME")
     @NotEmpty
     private String name;
 
     @Column(name= "GIVEN_DATE")
-    @NotEmpty
-    private Date givenDate;
+    private String date;
 
     @Column(name= "PRICE")
-    @NotEmpty
+    @NotNull
     private Long price;
 
     @ManyToOne

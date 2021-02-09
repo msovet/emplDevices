@@ -38,6 +38,8 @@
     <button type="submit" value="Submit" class="btn btn-primary btn-block">Создать</button>
 
     <h4> ${message} </h4>
+
+    <a href="/employees">All Employees List</a>
 </form:form>
 
 </body>

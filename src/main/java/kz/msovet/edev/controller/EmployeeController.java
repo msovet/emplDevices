@@ -35,12 +35,12 @@ public class EmployeeController {
         List<Employee> employees = employeeRepo.findAll();
         model.addAttribute("employees", employees);
 
-        return "index";
+        return "employees/index";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String viewCreate() {
-        return "create";
+        return "employees/create";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -50,12 +50,12 @@ public class EmployeeController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("employee", employee);
-            return "create";
+            return "employees/create";
         } else {
             employeeRepo.save(employee);
             model.addAttribute("message", "Entity created successfully");
 
-            return "create";
+            return "employees/create";
         }
     }
 
@@ -66,13 +66,13 @@ public class EmployeeController {
 
         model.addAttribute("employee", employee);
 
-        return "read";
+        return "employees/read";
     }
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public ModelAndView updateEmployee(@PathVariable Long id) {
         Employee employee = employeeService.getEmployee(id);
-        ModelAndView map = new ModelAndView("update");
+        ModelAndView map = new ModelAndView("employees/update");
         map.addObject("employee", employee);
         return map;
     }
@@ -89,7 +89,7 @@ public class EmployeeController {
             employeeService.update(employee);
             model.addAttribute("message", "Entity updated successfully");
 
-            return "update";
+            return "employees/update";
         }
     }
 

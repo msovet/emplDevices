@@ -15,6 +15,9 @@
     <h4>| ${employee.id} | ${employee.firstName} | ${employee.lastName} | ${employee.email} | ${employee.gender}</h4>
 </c:if>
 
+<a href="/employees">All Employees List</a>
+<a href="/employees/${employee.id}/device">Add device</a>
+
 <%--<a href="${pageContext.request.contextPath}/personList">Person List</a>--%>
 
 </body>

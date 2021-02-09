@@ -13,7 +13,8 @@
 <c:if test="${not empty employees}">
     <c:forEach var="employee" items="${employees}">
         <a href="/employees/${employee.id}"> Show | </a> <a href="/employees/${employee.id}/update"> Update </a>| ${employee.id} | ${employee.firstName} | ${employee.lastName} | ${employee.email} | ${employee.gender}
-        <a href="/employees/${employee.id}/delete"> Delete | </a>
+        <a href="/employees/${employee.id}/delete"> | Delete | </a>
+        <a href="/employees/create">| Create | </a>
         <br>
         <br>
     </c:forEach>
