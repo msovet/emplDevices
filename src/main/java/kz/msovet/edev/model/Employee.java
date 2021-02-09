@@ -3,6 +3,7 @@ package kz.msovet.edev.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -10,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Table(name = "EMPLOYEE")
 @Entity
@@ -39,7 +39,20 @@ public class Employee {
     @Column(name = "GENDER")
     private String gender;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "EMPLOYEE_ID", updatable = false)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "employee",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
     private List<Device> devices = new ArrayList<Device>();
+
+    public void addDevice(Device device) {
+        devices.add(device);
+        device.setEmployee(this);
+    }
+
+    public void removeDevice(Device device) {
+        devices.remove(device);
+        device.setEmployee(null);
+    }
 }

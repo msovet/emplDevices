@@ -18,9 +18,11 @@
 
 <c:if test="${not empty devices}">
     <c:forEach var="device" items="${devices}">
-        <a href="/devices/${device.id}"> ${device.category} | ${device.name} | ${device.price} | ${device.date}
+        <a href="/devices/${device.id}"> ${device.category} | ${device.name} | ${device.price} | ${device.date} |
+            <a href="/employees/${employee.id}/device/${device.id}/delete">Delete Device</a>
+            <br>
 <%--        <a href="/employees/${employee.id}/delete"> | Delete | </a>--%>
-<%--        <a href="/employees/create">| Create | </a>--%>
+<%--        <a href="/employees/create"> | Create | </a>--%>
     </c:forEach>
 </c:if>
             <br><br>

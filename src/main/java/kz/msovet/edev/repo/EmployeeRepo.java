@@ -9,5 +9,4 @@ import java.util.Optional;
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Long> {
     Employee getById(Long id);
-    void delete(Employee employee);
 }

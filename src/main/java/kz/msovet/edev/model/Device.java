@@ -3,12 +3,10 @@ package kz.msovet.edev.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 
 @Table(name = "DEVICE")
 @Entity
@@ -28,16 +26,29 @@ public class Device {
     @NotEmpty
     private String name;
 
-    @Column(name= "GIVEN_DATE")
+    @Column(name = "GIVEN_DATE")
     private String date;
 
-    @Column(name= "PRICE")
+    @Column(name = "PRICE")
     @NotNull
     private Long price;
 
-    @JoinColumn(name = "EMPLOYEE_ID", foreignKey = @ForeignKey(name = "EMPLOYEE_DEVICE_FK"))
-    @ManyToOne(fetch = FetchType.EAGER)
-    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMPLOYEE_ID",
+            foreignKey = @ForeignKey(name = "EMPLOYEE_DEVICE_FK"),
+            nullable = false)
     private Employee employee;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Device)) return false;
+        return id != null && id.equals(((Device) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 
 }

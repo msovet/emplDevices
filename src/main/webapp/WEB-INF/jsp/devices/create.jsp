@@ -21,7 +21,7 @@
     </script>
 </head>
 <body>
-<a href=""> | Add Device | </a>
+<h3> | Add Device | </h3>
 
 <form:form modelAttribute="device" action="/employees/${id}/device" method="post">
     <input name="category"
