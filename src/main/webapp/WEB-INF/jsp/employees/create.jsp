@@ -39,32 +39,33 @@
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input type="email" id="form6Example5" name="email" class="form-control <form:errors path="email">is-invalid</form:errors>"/>
+                    <input type="email" id="form6Example5" name="email"
+                           class="form-control <form:errors path="email">is-invalid</form:errors>"/>
                     <label class="form-label" for="form6Example5">Email</label>
                     <form:errors path="email"/>
                 </div>
 
-
-                Gender:
-                <div class="form-check d-inline-block justify-content-center mb-4">
-                    <input type="radio" name="gender" value="male" checked="checked" class="justify-content-center"/>
-                    <p>Male</p>
-                </div>
-                <div class="form-check d-inline-block justify-content-center mb-4">
-                    <input type="radio" name="gender" value="female" class="justify-content-center"/>
-                    <p>Female</p>
+                <div class="d-flex justify-content-center">
+                    <div class="form-check d-inline-block justify-content-center mb-4">
+                        <input type="radio" name="gender" value="male" checked="checked" style="margin-left: 12px;"/>
+                        <p>Male</p>
+                    </div>
+                    <div class="form-check d-inline-block justify-content-center mb-4">
+                        <input type="radio" name="gender" value="female" style="margin-left: 20px;"/>
+                        <p>Female</p>
+                    </div>
                 </div>
 
                 <!-- Checkbox -->
-<%--                <div class="form-check d-flex justify-content-center mb-4">--%>
-<%--                    <input--%>
-<%--                            class="form-check-input me-2"--%>
-<%--                            type="checkbox"--%>
-<%--                            value="male"--%>
-<%--                            id="form6Example8"--%>
-<%--                            checked--%>
-<%--                    />--%>
-<%--                </div>--%>
+                <%--                <div class="form-check d-flex justify-content-center mb-4">--%>
+                <%--                    <input--%>
+                <%--                            class="form-check-input me-2"--%>
+                <%--                            type="checkbox"--%>
+                <%--                            value="male"--%>
+                <%--                            id="form6Example8"--%>
+                <%--                            checked--%>
+                <%--                    />--%>
+                <%--                </div>--%>
 
                 <button type="submit" value="Submit" class="btn btn-primary btn-block mb-4">Создать</button>
 
