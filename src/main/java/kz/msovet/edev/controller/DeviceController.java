@@ -46,12 +46,13 @@ public class DeviceController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("device", device);
-            return "devices/create";
+            return "employees/read";
         } else {
             employeeService.create(employeeId,device);
 
             model.addAttribute("message", "Entity created successfully");
-            return "devices/create";
+
+            return "employees/read";
         }
     }
 

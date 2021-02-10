@@ -55,8 +55,7 @@
                 </c:if>
                 <a href="/employees" class="btn btn-secondary">All Employees List</a>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                    Add device
-                    <%--                <a href="/employees/${employee.id}/device" class="btn btn-primary">Add device</a>--%>
+                    Add Device
                 </button>
         </div>
     </div>
@@ -69,7 +68,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add Device</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -81,33 +80,33 @@
                            placeholder="Category"
                            type="text">
                     <form:errors path="category"/>
-                    <br><br>
+                    <br>
                     <input name="name"
                            class="form-control <form:errors path="name">is-invalid</form:errors>"
                            placeholder="name"
                            type="text">
                     <form:errors path="name"/>
-                    <br><br>
+                    <br>
                     <input name="price"
                            class="form-control <form:errors path="price">is-invalid</form:errors>"
                            placeholder="price"
                            type="text">
                     <form:errors path="price"/>
-                    <br><br>
+                    <br>
                     <label for="datepicker">Enter date:</label>
                     <input type="text" name="date" id="datepicker">
                     <br><br>
-                    <%--    <input type="submit" value="Submit"/>--%>
-                    <button type="submit" value="Submit" class="btn btn-primary btn-block">Создать</button>
-
+                    <button type="submit" value="Submit" class="btn btn-primary btn-block">
+                        Создать
+                    </button>
                     <h4> ${message} </h4>
 
-                    <a href="/employees">All Employees List</a>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-link">
+                            <a href="/employees">All Employees List</a>
+                        </button>
+                    </div>
                 </form:form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
