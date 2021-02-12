@@ -56,6 +56,15 @@ public class DeviceController {
         }
     }
 
+//    @RequestMapping(value = "{employeeId}/device/{deviceId}/update", method = RequestMethod.POST)
+//    public RedirectView updateDevice(@PathVariable Long employeeId,
+//                                     @PathVariable Long deviceId) {
+//        Device device = deviceRepo.getById(deviceId);
+//        deviceRepo.save(device);
+//
+//        return new RedirectView("/employees/" + employeeId);
+//    }
+
     @RequestMapping(value = "{employeeId}/device/{deviceId}/delete", method = RequestMethod.GET)
     public RedirectView deleteDevice(@PathVariable Long employeeId,
                                      @PathVariable Long deviceId) {

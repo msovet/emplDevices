@@ -20,7 +20,7 @@
                     <th scope="col">FirstName</th>
                     <th scope="col">Lastname</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Gender</th>
+                    <th scope="col">Devices List</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -32,18 +32,24 @@
                             <td>${employee.firstName}</td>
                             <td>${employee.lastName}</td>
                             <td>${employee.email}</td>
-                                <%--                            <td>${employee.gender}</td>--%>
                             <td>
-                                <c:if test="${not empty employee.getDevices()}">
-                                    <select class="form-control">
-                                        <option value="#" selected="selected" disabled="disabled" style="background: cadetblue">Devices</option>
-                                        <c:forEach var="device" items="${employee.getDevices()}">
-                                            <option value="${device.getName()}" class="fa-optin-monster" disabled="disabled">
-                                                    ${device.getName()}
+                                <c:choose>
+                                    <c:when test="${not empty employee.getDevices()}">
+                                        <select class="form-control">
+                                            <option value="#" selected="selected" disabled="disabled" style="background: cadetblue">
+                                                Devices
                                             </option>
-                                        </c:forEach>
-                                    </select>
-                                </c:if>
+                                            <c:forEach var="device" items="${employee.getDevices()}">
+                                                <option value="${device.getName()}" class="fa-optin-monster" disabled="disabled">
+                                                        ${device.getName()}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </c:when>
+                                    <c:otherwise>
+                                        Empty Devices
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                             <td>
                                 <a href="/employees/${employee.id}" class="btn btn-primary">
