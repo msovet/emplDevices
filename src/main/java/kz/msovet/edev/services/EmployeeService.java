@@ -7,6 +7,9 @@ import kz.msovet.edev.repo.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class EmployeeService {
     @Autowired
@@ -30,4 +33,22 @@ public class EmployeeService {
             deviceRepo.save(device);
         }
     }
+
+//    public List<String> getDevicesName(List<Employee> employees) {
+//        List<String> devicesName = new ArrayList<String>();
+//        if (!employees.isEmpty()) {
+//            for (Employee employee : employees) {
+//                devicesName = new ArrayList<String>();
+//                List<Device> devices = employee.getDevices();
+//                if (!devices.isEmpty()) {
+//                    for (Device device :
+//                            devices) {
+//                        devicesName.add(device.getName());
+//                    }
+//                }
+//                return  devicesName;
+//            }
+//        }
+//        return devicesName;
+//    }
 }

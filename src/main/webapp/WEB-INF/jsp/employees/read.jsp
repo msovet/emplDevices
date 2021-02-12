@@ -21,6 +21,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -43,20 +45,47 @@
                 <h4>Email: ${employee.email}</h4>
                 <h4>Gender: ${employee.gender}</h4>
             </c:if>
-            <c:if test="${not empty devices}">
-            <c:forEach var="device" items="${devices}">
-            <a href="/devices/${device.id}"> ${device.category} | ${device.name} | ${device.price} | ${device.date}
-                |
-                <a href="/employees/${employee.id}/device/${device.id}/delete">Delete Device</a>
-                <br>
-                    <%--        <a href="/employees/${employee.id}/delete"> | Delete | </a>--%>
-                    <%--        <a href="/employees/create"> | Create | </a>--%>
-                </c:forEach>
+
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:if test="${not empty devices}">
+                    <c:forEach var="device" items="${devices}">
+                        <tr>
+                            <td>${device.id}</td>
+                            <td>${device.category}</td>
+                            <td>${device.name}</td>
+                            <td>${device.price}</td>
+                            <td>${device.date} </td>
+                            <td>
+                                <a href="/employees/${employee.id}/device/${device.id}/delete" class="btn btn-danger">
+                                    <i class="far fa-trash-alt">
+                                    </i>
+                                </a>
+                                    <%--                                <a href="/employees/${employee.id}/delete" class="btn btn-danger"><i--%>
+                                    <%--                                        class="far fa-trash-alt"></i></a>--%>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </c:if>
-                <a href="/employees" class="btn btn-secondary">All Employees List</a>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                    Add Device
-                </button>
+                </tbody>
+            </table>
+
+
+            <a href="/employees" class="btn btn-secondary">All Employees List</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Add Device
+            </button>
         </div>
     </div>
 </div>

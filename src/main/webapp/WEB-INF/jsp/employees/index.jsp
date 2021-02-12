@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
     <%--    <link rel="stylesheet" type="text/css" href="/WEB-INF/view/style/styles.css">--%>
@@ -38,11 +39,23 @@
                             <td>${employee.firstName}</td>
                             <td>${employee.lastName}</td>
                             <td>${employee.email}</td>
-                            <td>${employee.gender}</td>
+                                <%--                            <td>${employee.gender}</td>--%>
                             <td>
-                                    <a href="/employees/${employee.id}" class="btn btn-primary">
-                                        <i class="far fa-eye"></i>
-                                    </a>
+                                <c:if test="${not empty employee.getDevices()}">
+                                    <select class="form-control">
+                                        <option value="#" selected="selected" disabled="disabled" style="background: cadetblue">Devices</option>
+                                        <c:forEach var="device" items="${employee.getDevices()}">
+                                            <option value="${device.getName()}" class="fa-optin-monster" disabled="disabled">
+                                                    ${device.getName()}
+                                            </option>
+                                        </c:forEach>
+                                    </select>
+                                </c:if>
+                            </td>
+                            <td>
+                                <a href="/employees/${employee.id}" class="btn btn-primary">
+                                    <i class="far fa-eye"></i>
+                                </a>
                                 <a href="/employees/${employee.id}/update" class="btn btn-primary"><i
                                         class="fas fa-edit"></i></a>
                                 <a href="/employees/${employee.id}/delete" class="btn btn-danger"><i

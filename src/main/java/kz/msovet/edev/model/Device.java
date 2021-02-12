@@ -22,6 +22,14 @@ public class Device {
     @NotEmpty
     private String category;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Column(name = "NAME")
     @NotEmpty
     private String name;

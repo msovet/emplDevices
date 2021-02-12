@@ -36,6 +36,9 @@ public class EmployeeController {
     public String getAllEmployees(Model model) {
         List<Employee> employees = employeeRepo.findAll();
         model.addAttribute("employees", employees);
+
+//        model.addAttribute("devices", devicesName);
+
         return "employees/index";
     }
 
