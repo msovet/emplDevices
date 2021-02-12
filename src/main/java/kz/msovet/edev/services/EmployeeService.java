@@ -1,5 +1,6 @@
 package kz.msovet.edev.services;
 
+import com.sun.xml.bind.v2.TODO;
 import kz.msovet.edev.model.Device;
 import kz.msovet.edev.model.Employee;
 import kz.msovet.edev.repo.DeviceRepo;
@@ -23,6 +24,8 @@ public class EmployeeService {
     }
     public void update(Employee employee) {
         employee.setGender(employeeRepo.getById(employee.getId()).getGender());
+        // TODO
+        employee.setDevices(employeeRepo.getById(employee.getId()).getDevices());
         employeeRepo.save(employee);
         System.out.println("EmployeeService.updateEmployee() invoked " + employee);
     }
