@@ -1,15 +1,11 @@
 package kz.msovet.edev.services;
 
-import com.sun.xml.bind.v2.TODO;
 import kz.msovet.edev.model.Device;
 import kz.msovet.edev.model.Employee;
 import kz.msovet.edev.repo.DeviceRepo;
 import kz.msovet.edev.repo.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class EmployeeService {
@@ -22,6 +18,7 @@ public class EmployeeService {
     public Employee getEmployee(Long id) {
         return employeeRepo.getById(id);
     }
+
     public void update(Employee employee) {
         employee.setGender(employeeRepo.getById(employee.getId()).getGender());
         // TODO
@@ -29,11 +26,16 @@ public class EmployeeService {
         employeeRepo.save(employee);
         System.out.println("EmployeeService.updateEmployee() invoked " + employee);
     }
-    public void create(Long employeeId, Device device){
+
+    public void create(Long employeeId, Device device) {
         if (employeeRepo.existsById(employeeId)) {
             Employee employee = this.getEmployee(employeeId);
             device.setEmployee(employee);
             deviceRepo.save(device);
         }
+    }
+
+    public Iterable<Employee> findAll() {
+        return employeeRepo.findAll();
     }
 }

@@ -41,7 +41,7 @@ public class Employee {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "employee",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.MERGE,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
     private List<Device> devices = new ArrayList<>();

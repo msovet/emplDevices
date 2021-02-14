@@ -18,7 +18,7 @@ public class Device {
     @GeneratedValue(generator = "device_seq", strategy = GenerationType.AUTO)
     private Long id;
 
-//    @Column(name = "CATEGORY")
+    //    @Column(name = "CATEGORY")
 //    @NotEmpty
 //    private String category;
     @ManyToOne(fetch = FetchType.LAZY)

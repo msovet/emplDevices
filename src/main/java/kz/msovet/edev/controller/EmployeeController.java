@@ -7,10 +7,12 @@ import kz.msovet.edev.repo.CategoryRepo;
 import kz.msovet.edev.repo.EmployeeRepo;
 import kz.msovet.edev.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -39,10 +42,18 @@ public class EmployeeController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getAllEmployees(Model model) {
+    public String getAllEmployees(HttpServletRequest request,
+            Model model) {
         List<Employee> employees = employeeRepo.findAll();
-        model.addAttribute("employees", employees);
 
+        PagedListHolder pagedListHolder = new PagedListHolder(employees);
+        int page = ServletRequestUtils.getIntParameter(request,"p", 0);
+
+        pagedListHolder.setPage(page);
+        pagedListHolder.setPageSize(3);
+
+        model.addAttribute("employees", employees);
+        model.addAttribute("pagedListHolder", pagedListHolder);
 //        model.addAttribute("devices", devicesName);
 
         return "employees/index";

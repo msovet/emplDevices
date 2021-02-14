@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/employees")
@@ -39,31 +39,29 @@ public class DeviceController {
     }
 
     @RequestMapping(value = "{id}/device", method = RequestMethod.POST)
-    public String addDevice(ModelMap model,
+    public RedirectView addDevice(ModelMap model,
                             @PathVariable("id") Long employeeId,
                             @ModelAttribute("device") @Valid Device device,
                             BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("device", device);
-            return "employees/read";
         } else {
-            employeeService.create(employeeId,device);
-
+            employeeService.create(employeeId, device);
             model.addAttribute("message", "Entity created successfully");
-
-            return "employees/read";
         }
+        return new RedirectView("/employees/" + employeeId);
+
     }
 
-//    @RequestMapping(value = "{employeeId}/device/{deviceId}/update", method = RequestMethod.POST)
-//    public RedirectView updateDevice(@PathVariable Long employeeId,
-//                                     @PathVariable Long deviceId) {
-//        Device device = deviceRepo.getById(deviceId);
-//        deviceRepo.save(device);
-//
-//        return new RedirectView("/employees/" + employeeId);
-//    }
+    @RequestMapping(value = "{employeeId}/device/{deviceId}/update", method = RequestMethod.POST)
+    public RedirectView updateDevice(@PathVariable Long employeeId,
+                                     @PathVariable Long deviceId) {
+        Device device = deviceRepo.getById(deviceId);
+        deviceRepo.save(device);
+
+        return new RedirectView("/employees/" + employeeId);
+    }
 
     @RequestMapping(value = "{employeeId}/device/{deviceId}/delete", method = RequestMethod.GET)
     public RedirectView deleteDevice(@PathVariable Long employeeId,
