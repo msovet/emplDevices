@@ -36,22 +36,4 @@ public class EmployeeService {
             deviceRepo.save(device);
         }
     }
-
-//    public List<String> getDevicesName(List<Employee> employees) {
-//        List<String> devicesName = new ArrayList<String>();
-//        if (!employees.isEmpty()) {
-//            for (Employee employee : employees) {
-//                devicesName = new ArrayList<String>();
-//                List<Device> devices = employee.getDevices();
-//                if (!devices.isEmpty()) {
-//                    for (Device device :
-//                            devices) {
-//                        devicesName.add(device.getName());
-//                    }
-//                }
-//                return  devicesName;
-//            }
-//        }
-//        return devicesName;
-//    }
 }

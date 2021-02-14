@@ -18,9 +18,14 @@ public class Device {
     @GeneratedValue(generator = "device_seq", strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "CATEGORY")
-    @NotEmpty
-    private String category;
+//    @Column(name = "CATEGORY")
+//    @NotEmpty
+//    private String category;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY_ID",
+            foreignKey = @ForeignKey(name = "CATEGORY_DEVICE_FK"),
+            nullable = false)
+    private Category category;
 
     public String getName() {
         return name;
@@ -58,5 +63,4 @@ public class Device {
     public int hashCode() {
         return getClass().hashCode();
     }
-
 }

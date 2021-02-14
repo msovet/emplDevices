@@ -1,7 +1,9 @@
 package kz.msovet.edev.controller;
 
+import kz.msovet.edev.model.Category;
 import kz.msovet.edev.model.Device;
 import kz.msovet.edev.model.Employee;
+import kz.msovet.edev.repo.CategoryRepo;
 import kz.msovet.edev.repo.EmployeeRepo;
 import kz.msovet.edev.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/employees")
@@ -26,6 +29,9 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private CategoryRepo categoryRepo;
 
     @Autowired
     public EmployeeController(EmployeeRepo employeeRepo) {
@@ -68,9 +74,11 @@ public class EmployeeController {
                               Model model) {
         Employee employee = employeeService.getEmployee(employeeId);
         List<Device> devices = employee.getDevices();
+        List<Category> categories = categoryRepo.findAll();
 
         model.addAttribute("employee", employee);
         model.addAttribute("devices", devices);
+        model.addAttribute("categories", categories);
 
         return "employees/read";
     }
@@ -78,7 +86,11 @@ public class EmployeeController {
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public ModelAndView updateEmployee(@PathVariable Long id) {
         Employee employee = employeeService.getEmployee(id);
+        List<Category> categories = categoryRepo.findAll();
+
         ModelAndView map = new ModelAndView("employees/update");
+
+        map.addObject("categories", categories);
         map.addObject("employee", employee);
         return map;
     }

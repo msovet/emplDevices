@@ -1,8 +1,7 @@
 <!-- Modal -->
 <%@page pageEncoding="UTF-8"%>
-<%@include file="imports.jsp" %>
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<%@include file="imports.jsp"%>
+<div class="modal fade" id="exampleModalCenterUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -14,28 +13,27 @@
             </div>
             <div class="modal-body">
                 <form:form modelAttribute="device" action="/employees/${id}/device" method="post">
-                    <select name="category" id="categorySelect" class="form-control">
-                        <option value="#" selected="selected" disabled="disabled" style="background: cadetblue">
-                            Choose category
-                        </option>
-                        <c:forEach var="category" items="${categories}">
-                            <option value="${category.getId()}" class="fa-optin-monster">
-                                    ${category.getName()}
-                            </option>
-                        </c:forEach>
-                    </select>
+                    <input name="category"
+                           class="form-control"
+                           placeholder="Category"
+                           type="text"
+                           value="<c:if test="${not empty device}">${device.category.getName()}</c:if>">
+                    <%--                                            <form:errors path="category"/>--%>
                     <br>
                     <input name="name"
-                           class="form-control <form:errors path="name">is-invalid</form:errors>"
+                           class="form-control"
+                        <%--                                                   <form:errors path="name">is-invalid</form:errors>--%>
                            placeholder="name"
-                           type="text">
-                    <form:errors path="name"/>
+                           type="text"
+                           value="<c:if test="${not empty device}">${device.name}</c:if>">
+                    <%--                                            <form:errors path="name"/>--%>
                     <br>
                     <input name="price"
-                           class="form-control <form:errors path="price">is-invalid</form:errors>"
+                           class="form-control"
                            placeholder="price"
-                           type="text">
-                    <form:errors path="price"/>
+                           type="text"
+                           value="<c:if test="${not empty device}">${device.price}</c:if>">
+                    <%--                                            <form:errors path="price"/>--%>
                     <br>
                     <label for="datepicker">Enter given date:</label>
                     <input type="text" name="date" id="datepicker">
