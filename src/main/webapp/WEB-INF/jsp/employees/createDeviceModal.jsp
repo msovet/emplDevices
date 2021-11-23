@@ -37,7 +37,7 @@
                            type="text">
                     <form:errors path="price"/>
                     <br>
-                    <label for="datepicker">Enter given date:</label>
+                    <label for="datepicker">Enter given date Berilgen kuni:</label>
                     <input type="text" name="date" id="datepicker">
                     <br><br>
                     <button type="submit" value="Submit" class="btn btn-primary btn-block">

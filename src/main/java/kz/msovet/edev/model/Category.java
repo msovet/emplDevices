@@ -24,6 +24,9 @@ public class Category {
     @NotEmpty
     private String name;
 
+
+
+
     @ToString.Exclude
     @OneToMany(
             mappedBy = "category",

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
@@ -21,8 +21,8 @@
             <c:url value="/employees" var="pagedLink">
                 <c:param name="p" value="~" />
             </c:url>
-            <tg:paging pagedListHolder="${pagedListHolder}"
-                       pagedLink="${pagedLink}" />
+<%--            <tg:paging pagedListHolder="${pagedListHolder}"--%>
+<%--                       pagedLink="${pagedLink}" />--%>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -51,7 +51,7 @@
                                             </option>
                                             <c:forEach var="device" items="${employee.getDevices()}">
                                                 <option value="${device.getName()}" class="fa-optin-monster" disabled="disabled">
-                                                        ${device.getName()}
+                                                        ${device.getCategory().getName()} ${device.getName()}
                                                 </option>
                                             </c:forEach>
                                         </select>

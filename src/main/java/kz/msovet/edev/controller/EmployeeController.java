@@ -54,8 +54,7 @@ public class EmployeeController {
 
         model.addAttribute("employees", employees);
         model.addAttribute("pagedListHolder", pagedListHolder);
-//        model.addAttribute("devices", devicesName);
-
+        System.out.println(employees.get(0).getDevices().get(0).getCategory().getName());
         return "employees/index";
     }
 
